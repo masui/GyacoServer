@@ -1,15 +1,16 @@
 require 'rubygems'
 require 'sinatra'
 
-get '/test' do
-  'TESTTEST'
-end
-
+#
+# http://masui.sfc.keio.ac.jp/gyaco/upload にPOST
+# namd=
+# data=
+#
 post '/upload' do
   data = params[:data]
   name = params[:name]
   name = 'data' if name == '' || name.nil?
-  File.open("/tmp/#{name}","w"){ |f|
+  File.open("db/#{name}","w"){ |f|
     f.print data
   }
 end

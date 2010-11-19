@@ -2,7 +2,7 @@ require 'rubygems'
 require 'bundler/setup'
 require 'sinatra'
 require 'rack'
-require 'main'
+require File.dirname(__FILE__)+'/main'
 
 set :environment, :development
 

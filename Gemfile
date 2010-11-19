@@ -1,5 +1,6 @@
 source 'http://rubygems.org'
 
+gem 'eventmachine'
 gem 'thin'
 gem 'rack'
 gem 'sinatra'

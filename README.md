@@ -23,7 +23,8 @@ Run Server
 
 start development server
 
-    % ruby development.rb
+    % mkdir server/public
+    % ruby server/development.rb
 
 or, use config.ru for Passenger
 

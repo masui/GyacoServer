@@ -1,0 +1,10 @@
+source 'http://rubygems.org'
+
+gem 'thin'
+gem 'rack'
+gem 'sinatra'
+gem 'extlib'
+gem 'sinatra-reloader'
+gem 'json'
+gem 'wav-file'
+gem 'ArgsParser'

@@ -1,5 +1,4 @@
 #!/usr/bin/env ruby
-# -*- coding: utf-8 -*-
 require 'rubygems'
 require 'wav-file'
 require 'ArgsParser'
@@ -12,7 +11,7 @@ parser.bind(:help, :h, 'show help')
 parser.bind(:interval, :i, 'directory watch interval')
 first, params = parser.parse(ARGV)
 
-unless parser.has_params([:path, :out]) or parser.has_param(:help)
+if !parser.has_params([:path, :out]) or parser.has_param(:help)
   puts parser.help
   exit 1
 end
@@ -36,7 +35,6 @@ loop do
       sources << out
     }
     p sources
-    # 適当にソートする！！
     format = WavFile::readFormat open(sources.first)
     dataChunk = WavFile::readDataChunk open(sources.first)
     if sources.size > 1
@@ -53,9 +51,4 @@ loop do
   sleep interval
 end
 
-exit
-f = open("input.wav")
-format = WavFile::readFormat(f)
-dataChunk = WavFile::readDataChunk(f)
-f.close
 

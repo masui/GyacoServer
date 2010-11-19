@@ -32,7 +32,7 @@ loop do
     sources = Array.new
     files.each{|i|
       out = "#{tmp_dir}/#{i.split(/\//).last.gsub(/\..+/,'.wav')}"
-      puts `ffmpeg -i #{i} #{out}` unless File::exists?(out)
+      puts `ffmpeg -i #{i} -ac 1 -ar 44100 #{out}` unless File::exists?(out)
       sources << out
     }
     p sources

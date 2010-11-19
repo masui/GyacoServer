@@ -1,5 +1,6 @@
 #!/usr/bin/env ruby
 require 'rubygems'
+require 'bundler/setup'
 require 'wav-file'
 require 'ArgsParser'
 

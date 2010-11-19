@@ -33,7 +33,6 @@ post '/upload' do
   end
 end
 
-
 get '/list' do
   files = Dir.glob("#{@@dbpath}/*").delete_if{|i|
     i =~ /^\.+$/

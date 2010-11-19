@@ -1,2 +1,7 @@
 *~
 public/files
+*.wav
+*.mp3
+#*
+*#
+.*

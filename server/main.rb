@@ -46,3 +46,20 @@ get '/list' do
     :files => file_time
   }.to_json
 end
+
+delete '/all' do
+  count = 0
+  Dir.glob("#{@@dbpath}/*").delete_if{|i|
+    i =~ /^\.+$/
+  }.each{|i|
+    begin
+      File::delete(i)
+      count += 1
+    rescue => e
+      STDERR.puts e
+    end
+  }
+  @mes = {
+    :message => "deleted #{count} files"
+  }.to_json
+end

@@ -49,8 +49,14 @@ upload
  * response : json
  * see "misc/sample_upload_client.rb"
 
-list 
+file list
 
  * url : http://example.com/appname/list
  * method : get
+ * response : json
+
+delete all files
+
+ * url : http://example.com/appname/all
+ * method : delete
  * response : json

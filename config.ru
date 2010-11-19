@@ -1,6 +1,8 @@
 require 'rubygems'
 require 'sinatra'
-  
-require 'gyaco.rb'
+require 'rack'
+require 'main'
+
+set :environemt, :production
 
 run Sinatra::Application

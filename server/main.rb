@@ -47,7 +47,7 @@ get '/list' do
   }.to_json
 end
 
-delete '/all' do
+def delete_files
   count = 0
   Dir.glob("#{@@dbpath}/*").delete_if{|i|
     i =~ /^\.+$/
@@ -63,3 +63,13 @@ delete '/all' do
     :message => "deleted #{count} files"
   }.to_json
 end
+
+delete '/all' do
+  delete_files
+end
+
+get '/delete_all' do
+  delete_files
+end
+
+

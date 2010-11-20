@@ -60,3 +60,9 @@ delete all files
  * url : http://example.com/appname/all
  * method : delete
  * response : json
+
+delete all files(2)
+
+ * url : http://example.com/appname/delete_all
+ * method : get
+ * response : json

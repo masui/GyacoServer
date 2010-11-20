@@ -6,6 +6,7 @@ require 'json'
 
 @@dbdir = 'files'
 @@dbpath = File.dirname(__FILE__)+'/public/'+@@dbdir
+@@trash_path = File.dirname(__FILE__)+'/trash/'
 
 Dir::mkdir(@@dbpath) unless File::exist?(@@dbpath)
 
@@ -49,11 +50,12 @@ end
 
 def delete_files
   count = 0
+  Dir.mkdir @@trash_path unless File::exists? @@trash_path
   Dir.glob("#{@@dbpath}/*").delete_if{|i|
     i =~ /^\.+$/
   }.each{|i|
     begin
-      File::delete(i)
+      File::rename(i, @@trash_path+i.split(/\//).last)
       count += 1
     rescue => e
       STDERR.puts e

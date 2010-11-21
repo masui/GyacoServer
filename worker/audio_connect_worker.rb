@@ -3,6 +3,7 @@ require 'rubygems'
 require 'bundler/setup'
 require 'wav-file'
 require 'ArgsParser'
+require 'digest/md5'
 
 parser = ArgsParser.parser
 parser.bind(:path, :p, 'watch path (required)')
@@ -36,10 +37,16 @@ loop do
       sources << out
     }
     p sources
+
     format = WavFile::readFormat open(sources.first)
     dataChunk = WavFile::readDataChunk open(sources.first)
+    md5s = Array.new
+    md5s << Digest::MD5.hexdigest(open(sources.first).read)
     if sources.size > 1
       for i in 1...sources.size do
+        md5 = Digest::MD5.hexdigest open(sources[i]).read
+        next if md5s.include?(md5) # skip same file
+        md5s << md5
         data = WavFile::readDataChunk open(sources[i])
         dataChunk.data += data.data
       end

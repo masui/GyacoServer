@@ -28,7 +28,7 @@ Dir::mkdir(tmp_dir) unless File::exists?(tmp_dir)
 files = nil
 files_old = nil
 loop do
-  files = Dir.glob(params[:path]+'*').delete_if{|i| !(i =~ /\.(wav|mp3)/i)}.sort.reverse
+  files = Dir.glob(params[:path]+'*').delete_if{|i| !(i =~ /\.(wav|mp3|amr|mov)/i)}.sort.reverse
   if files != files_old and files.size > 0
     sources = Array.new
     files.each{|i|

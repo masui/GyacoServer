@@ -48,6 +48,7 @@ upload
  * post parameter : data, file_ext
  * response : json
  * see "misc/sample_upload_client.rb"
+ * format : wav, mp3, amr, mov
 
 file list
 

@@ -61,6 +61,7 @@ def delete_files
       STDERR.puts e
     end
   }
+  FileUtils::cp(File.dirname(__FILE__)+'/public/empty.mp3', File.dirname(__FILE__)+'/public/audio.mp3')
   @mes = {
     :message => "deleted #{count} files"
   }.to_json

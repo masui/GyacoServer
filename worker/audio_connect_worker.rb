@@ -34,7 +34,7 @@ loop do
     files.each{|i|
       out = "#{tmp_dir}/#{i.split(/\//).last.gsub(/\..+/,'.wav')}"
       puts `ffmpeg -i #{i} -ac 1 -ar 44100 #{out}` unless File::exists?(out)
-      sources << out
+      sources << out if File::exists? out
     }
     p sources
 

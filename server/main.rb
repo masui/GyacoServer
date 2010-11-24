@@ -20,7 +20,9 @@ end
 
 post '/upload' do
   data = params[:data]
-  ext = params[:file_ext]
+  ext = params[:filename].scan(/\.([^\/]+)$/).first.first.downcase rescue ext = nil
+  ext = params[:file_ext].downcase unless ext
+
   name = "#{@@dbpath}/#{Time.now.to_i}_#{Time.now.usec}"
   name += ".#{ext}" if ext
   File.open(name, 'w'){ |f|

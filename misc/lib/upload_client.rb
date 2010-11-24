@@ -14,13 +14,11 @@ module UploadClient
     open(filename, 'rb'){|f|
       bin = f.read
       boundary = '----UPLOADER_BOUNDARY----'
-      file_ext = ''
-      file_ext = filename.split(/\./).last if filename =~ /\..+/
       data = <<EOF
 --#{boundary}\r
-content-disposition: form-data; name="file_ext"\r
+content-disposition: form-data; name="filename"\r
 \r
-#{file_ext}\r
+#{filename.split(/\//).last}\r
 --#{boundary}\r
 content-disposition: form-data; name="data"\r
 \r

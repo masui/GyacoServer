@@ -17,9 +17,7 @@ end
 get '/' do
 <<EOF
 <form method="post" action="#{app_root}/upload" enctype="multipart/form-data">
-  file : <input type="file" name="file"><br>
-  comment : <input type="text" name="comment" size="40"><br>
-  <input type="submit" name="upload" value="upload!!">
+  file : <input type="file" name="file"> <input type="submit" name="upload" value="upload!!">
 </form>
 EOF
 end

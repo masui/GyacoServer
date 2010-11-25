@@ -15,26 +15,32 @@ def app_root
 end
 
 get '/' do
-  @mes = 'gyaco server'
+<<EOF
+<form method="post" action="#{app_root}/upload" enctype="multipart/form-data">
+  file : <input type="file" name="file"><br>
+  comment : <input type="text" name="comment" size="40"><br>
+  <input type="submit" name="upload" value="upload!!">
+</form>
+EOF
 end
 
 post '/upload' do
-  data = params[:data]
-  ext = params[:filename].scan(/\.([^\/]+)$/).first.first.downcase rescue ext = nil
-  ext = params[:file_ext].downcase unless ext
-
-  name = "#{@@dbpath}/#{Time.now.to_i}_#{Time.now.usec}"
-  name += ".#{ext}" if ext
-  File.open(name, 'w'){ |f|
-    f.write data
-  }
-  if File::exists? name
-    @mes = {
-      :url => "#{app_root}/#{@@dbdir}/#{name.split(/\//).last}",
-      :size => data.size
-    }.to_json
+  if !params[:file]
+    @mes = {:error => 'error'}.to_json
+  else
+    name = "#{@@dbpath}/#{Time.now.to_i}_#{Time.now.usec}"+File.extname(params[:file][:filename])
+    File.open(name, 'wb'){|f|
+      f.write params[:file][:tempfile].read
+    }
+    if File::exists? name
+      @mes = {
+        :url => "#{app_root}/#{@@dbdir}/#{name.split(/\//).last}",
+        :size => File.size(name)
+      }.to_json    
+    end
   end
 end
+
 
 get '/list' do
   files = Dir.glob("#{@@dbpath}/*").delete_if{|i|

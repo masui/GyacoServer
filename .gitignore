@@ -1,5 +1,6 @@
 *~
-public/files
+server/public/files
+server/trash
 *.wav
 *.mp3
 #*

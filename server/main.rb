@@ -81,4 +81,25 @@ get '/delete_all' do
   delete_files
 end
 
-
+delete '/files/*' do
+  # @@dbdir = 'files'
+  # @@dbpath = File.dirname(__FILE__)+'/public/'+@@dbdir
+  @fname = params[:splat].first.first
+  @fpath = "#{@@dbpath}/#{@fname}"
+  unless File.exists? @fpath
+    status 404
+    @mes = {:message => 'file not exists'}.to_json
+  else
+    Dir.mkdir @@trash_path unless File::exists? @@trash_path
+    begin
+      File::rename(@fpath, "#{@@trash_path}/#{@fname}")
+    rescue => e
+      STDERR.puts e
+      throw(:halt, [500, {:error => e.to_s}.to_json])
+    end
+    status 200
+    @mes = {
+      :message => "deleted #{@fname}"
+    }.to_json
+  end
+end

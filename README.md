@@ -58,6 +58,13 @@ file list
  * method : get
  * response : json
 
+delete file
+
+ * url : http://example.com/appname/files/foobar.mp3
+ * method : delete
+ * response : json
+ * move file "trash" directory
+
 delete all files
 
  * url : http://example.com/appname/all

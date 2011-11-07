@@ -7,15 +7,17 @@ Dependencies
 
 install ffmpeg
 
-    % sudo port install ffmpeg
+    ## Mac OSX
+    % brew install ffmpeg
+
+    ## Ubuntu
     % sudo apt-get install ffmpeg
+
 
 install rubygems
 
     % gem install bundler
     % bundle install
-
-see "Gemfile".
 
 
 Run Server
@@ -30,7 +32,7 @@ or, use config.ru for Passenger
 
 
 Run Audio Connect Worker
-==========
+========================
 
 make connected audio file "audio.mp3" from files directory.
 

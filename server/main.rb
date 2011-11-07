@@ -24,6 +24,7 @@ end
 
 post '/upload' do
   if !params[:file]
+    status 500
     @mes = {:error => 'error'}.to_json
   else
     name = "#{@@dbpath}/#{Time.now.to_i}_#{Time.now.usec}"+File.extname(params[:file][:filename])
@@ -88,7 +89,7 @@ delete '/files/*' do
   @fpath = "#{@@dbpath}/#{@fname}"
   unless File.exists? @fpath
     status 404
-    @mes = {:message => 'file not exists'}.to_json
+    @mes = {:error => 'file not exists'}.to_json
   else
     Dir.mkdir @@trash_path unless File::exists? @@trash_path
     begin

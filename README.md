@@ -45,7 +45,7 @@ API
 
 upload
 
- * url : http://example.com/appname/upload
+ * url : http://example.com/gyaco/upload
  * method : post (multipart/form-data)
  * post parameter : data, file_ext
  * response : json
@@ -54,27 +54,23 @@ upload
 
 file list
 
- * url : http://example.com/appname/list
+ * url : http://example.com/gyaco/list
  * method : get
  * response : json
 
 delete file
 
- * url : http://example.com/appname/files/foobar.mp3
+ * url : http://example.com/gyaco/delete
+ * post parameter : "name=foo.mp3"
  * method : delete
  * response : json
  * move file "trash" directory
+ * % curl -d 'name=foo.mp3' 'http://example.com/gyaco/delete' --request DELETE
 
 delete all files
 
- * url : http://example.com/appname/all
+ * url : http://example.com/gyaco/all
  * method : delete
  * response : json
  * move files "trash" directory
-
-delete all files(2)
-
- * url : http://example.com/appname/delete_all
- * method : get
- * response : json
- * move files "trash" directory
+ * % curl 'http://example.com/gyaco/all' --request DELETE

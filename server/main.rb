@@ -78,14 +78,10 @@ delete '/all' do
   delete_files
 end
 
-get '/delete_all' do
-  delete_files
-end
-
-delete '/files/*' do
-  # @@dbdir = 'files'
-  # @@dbpath = File.dirname(__FILE__)+'/public/'+@@dbdir
-  @fname = params[:splat].first.first
+delete '/delete' do
+  @@dbdir = 'files'
+  @@dbpath = File.dirname(__FILE__)+'/public/'+@@dbdir
+  @fname = params['name'].split('/').last
   @fpath = "#{@@dbpath}/#{@fname}"
   unless File.exists? @fpath
     status 404

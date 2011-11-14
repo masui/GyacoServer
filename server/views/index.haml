@@ -1,0 +1,10 @@
+!!!XHTML
+%html
+  %head
+    %title gyaco
+  %body
+    %form{:method => :post, :action => "#{app_root}/upload",
+          :enctype => 'multipart/form-data'}
+      file : 
+      %input{:type => :file, :name => :file}
+      %input{:type => :submit, :name => :upload, :value => 'upload!!'}

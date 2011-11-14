@@ -15,11 +15,7 @@ def app_root
 end
 
 get '/' do
-<<EOF
-<form method="post" action="#{app_root}/upload" enctype="multipart/form-data">
-  file : <input type="file" name="file"> <input type="submit" name="upload" value="upload!!">
-</form>
-EOF
+  haml :index
 end
 
 post '/upload' do

@@ -1,10 +1,16 @@
 !!!XHTML
+- @title = 'Gyaco'
 %html
   %head
-    %title gyaco
+    %title= @title
   %body
+    %h1= @title
+    %h2 Upload
     %form{:method => :post, :action => "#{app_root}/upload",
           :enctype => 'multipart/form-data'}
       file : 
       %input{:type => :file, :name => :file}
       %input{:type => :submit, :name => :upload, :value => 'upload!!'}
+    %hr
+      - @src_url = 'https://github.com/shokai/GyacoServer'
+      %a{:href => @src_url}= @src_url
